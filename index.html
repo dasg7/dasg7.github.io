@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diego Ali Salinas</title>
+<meta name="description" content="Diego Ali Salinas — Data / Analytics Engineer en Microsoft Fabric y Dynamics 365 F&amp;O. Convierto procesos de datos manuales en pipelines que corren solos.">
+<meta name="color-scheme" content="dark">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+  :root {
+    --bg: #131618; --grid: #1b1f22; --border: #232a2e; --surface: #171b1e;
+    --text: #e6eaea; --strong: #f2f5f5; --text2: #c3cbcb; --muted: #96a1a1; --dim: #6f7a7a;
+    --accent: #7fd8b0; --accent-hover: #a3e6c6; --accent-dim: #2c5a48; --on-accent: #0f1412;
+    --chip: #2c3538; --node: #4a5659;
+    --bronze-fill: #33291f; --bronze-stroke: #9a7349; --bronze-text: #d9b48a;
+    --silver-fill: #262b2e; --silver-stroke: #aab4b7; --silver-text: #e3e9ea;
+    --gold-fill: #1d4436; --gold-text: #d5f5e6;
+    --serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+    --sans: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.5;
+    background-color: var(--bg);
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-hover); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .mono { font-family: var(--mono); }
+  .serif { font-family: var(--serif); font-weight: 400; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding-inline: 24px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  .label { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+  h1, h2, h3 { margin: 0; text-wrap: balance; }
+  p { margin: 0; text-wrap: pretty; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* nav */
+  .nav { border-bottom: 1px solid var(--border); position: sticky; top: 0; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); z-index: 10; }
+  .nav .wrap { display: flex; justify-content: space-between; align-items: center; min-height: 64px; gap: 16px; }
+  .nav .id { font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: .08em; }
+  .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 28px; font-size: 14px; }
+  .nav ul a { color: var(--text2); }
+  .nav ul a.cta { color: var(--accent); }
+
+  /* hero */
+  .hero { padding-block: 72px 48px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; align-items: end; }
+  .hero .lead { grid-column: span 8; display: flex; flex-direction: column; gap: 26px; }
+  .hero .side { grid-column: span 4; display: flex; flex-direction: column; gap: 10px; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(56px, 8.4vw, 112px); line-height: .92; letter-spacing: -.02em; color: var(--strong); }
+  .hero .intro { font-size: clamp(17px, 1.6vw, 22px); line-height: 1.45; color: var(--text2); max-width: 680px; }
+  .hero .intro strong { color: var(--strong); font-weight: 600; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; margin-right: 12px; vertical-align: middle; }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; font-weight: 600; font-size: 15px; border-radius: 4px; min-height: 44px; }
+  .btn.primary { background: var(--accent); color: var(--on-accent); }
+  .btn.primary:hover { background: var(--accent-hover); color: var(--on-accent); }
+  .btn.ghost { border: 1px solid var(--chip); color: var(--text); font-weight: 500; }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--strong); }
+  .loc { font-family: var(--mono); font-size: 13px; color: var(--dim); }
+  .card { border: 1px solid var(--border); background: var(--surface); padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+  .row .v { font-size: 28px; color: var(--strong); }
+  .row .v small { font-size: 13px; color: var(--dim); }
+  .row .old { font-size: 16px; color: var(--dim); text-decoration: line-through; }
+  .row .n { font-size: 16px; color: var(--text2); }
+  .hr { height: 1px; background: var(--border); }
+  .bars { display: flex; gap: 4px; height: 36px; align-items: flex-end; }
+  .bars div { flex: 1; background: var(--chip); }
+
+  /* kpis */
+  .kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .kpi { padding: 30px 26px; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+  .kpi:first-child { padding-left: 0; } .kpi:last-child { border-right: 0; padding-right: 0; }
+  .kpi .big { font-family: var(--mono); font-size: clamp(40px, 4vw, 56px); line-height: 1; color: var(--strong); }
+  .kpi .big span { font-size: 22px; color: var(--accent); }
+  .kpi p { font-size: 14px; color: var(--muted); line-height: 1.4; }
+  .band { padding-block: 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .band .line { flex: 1 1 120px; height: 1px; background: var(--border); position: relative; overflow: hidden; }
+  .band .line i { position: absolute; left: 0; top: 0; height: 1px; width: 100%; background: var(--accent); transform-origin: left; }
+  .band .val { font-family: var(--mono); font-size: 20px; color: var(--strong); }
+  .band .val span { font-size: 13px; color: var(--accent); }
+  .band .base { font-family: var(--mono); font-size: 12px; color: var(--dim); flex-basis: 100%; }
+
+  /* sections */
+  section.block { padding-block: 72px 0; }
+  .head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+  .head h2 { font-family: var(--serif); font-size: clamp(32px, 3.6vw, 44px); color: var(--strong); }
+  .head .sub { font-family: var(--mono); font-size: 13px; color: var(--dim); }
+  .frame { border: 1px solid var(--border); background: var(--surface); padding: 32px 28px 20px; overflow-x: auto; }
+  .frame svg { display: block; min-width: 860px; width: 100%; overflow: visible; }
+
+  .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .spec { border: 1px solid var(--border); background: var(--surface); padding: 28px; display: flex; flex-direction: column; gap: 12px; }
+  .spec h3 { font-family: var(--serif); font-size: 26px; color: var(--strong); }
+  .spec p { font-size: 15px; line-height: 1.55; color: var(--muted); }
+
+  .xp { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; padding-block: 36px; border-top: 1px solid var(--border); }
+  .xp:first-of-type { border-top: 0; padding-top: 0; }
+  .xp .who { grid-column: span 4; display: flex; flex-direction: column; gap: 6px; }
+  .xp .who h3 { font-family: var(--serif); font-size: 30px; color: var(--strong); }
+  .xp .who .role { font-size: 14px; color: var(--muted); }
+  .xp .who .when { font-family: var(--mono); font-size: 13px; color: var(--accent); margin-top: 4px; }
+  .xp .who .ctx { font-size: 13px; color: var(--dim); line-height: 1.45; margin-top: 6px; }
+  .xp .what { grid-column: span 8; display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.55; color: var(--text2); }
+  .xp .what li { display: flex; gap: 14px; }
+  .xp .what li::before { content: "→"; font-family: var(--mono); color: var(--accent); flex: none; }
+  .xp ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .pending { border: 1px dashed var(--chip); padding: 18px 20px; font-family: var(--mono); font-size: 13px; color: var(--dim); }
+
+  .skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--border); }
+  .skill { padding: 22px 24px 22px 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+  .skill:nth-child(odd) { border-right: 1px solid var(--border); }
+  .skill:nth-child(even) { padding-left: 24px; padding-right: 0; }
+  .skill h3 { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+  .skill p { font-size: 15px; line-height: 1.55; color: var(--text2); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-family: var(--mono); font-size: 12px; padding: 6px 10px; border: 1px solid var(--chip); color: var(--text2); }
+
+  .edu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .edu .card { gap: 6px; }
+  .edu .t { font-family: var(--serif); font-size: 22px; color: var(--strong); }
+  .edu .s { font-size: 14px; color: var(--muted); }
+
+  .contact { margin-top: 80px; border-top: 1px solid var(--border); padding-block: 28px 8px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .contact .big { font-family: var(--serif); font-size: clamp(24px, 3vw, 32px); color: var(--strong); }
+  .contact .big a { word-break: break-all; }
+  .contact .links { display: flex; gap: 20px; font-family: var(--mono); font-size: 13px; color: var(--dim); flex-wrap: wrap; }
+  footer { padding-block: 24px 48px; font-family: var(--mono); font-size: 12px; color: var(--dim); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  /* motion */
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    .rise { animation: rise 1s cubic-bezier(.2,.7,.2,1) both; }
+    .d1 { animation-delay: .12s; } .d2 { animation-delay: .24s; } .d3 { animation-delay: .36s; } .d4 { animation-delay: .5s; } .d5 { animation-delay: .64s; }
+    @keyframes blink { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+    .dot { animation: blink 2.4s ease-in-out infinite; }
+    @keyframes glow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+    .node { animation: glow 3s ease-in-out infinite; }
+    @keyframes tick { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    .band .line i { animation: tick 1.8s cubic-bezier(.2,.7,.2,1) .9s both; }
+  }
+
+  /* responsive */
+  @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; gap: 28px; padding-block: 56px 40px; }
+    .hero .lead, .hero .side { grid-column: auto; }
+    .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .kpi { padding: 24px 20px; }
+    .kpi:nth-child(2n) { border-right: 0; padding-right: 0; }
+    .kpi:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+    .kpi:nth-child(odd) { padding-left: 0; }
+    .xp { grid-template-columns: 1fr; gap: 18px; }
+    .xp .who, .xp .what { grid-column: auto; }
+  }
+  @media (max-width: 640px) {
+    .nav ul li:not(:last-child) { display: none; }
+    .kpis { grid-template-columns: 1fr; }
+    .kpi { border-right: 0; padding-inline: 0; border-bottom: 1px solid var(--border); }
+    .kpi:last-child { border-bottom: 0; }
+    .grid2, .skills, .edu { grid-template-columns: 1fr; }
+    .skill, .skill:nth-child(even) { padding-inline: 0; border-right: 0; }
+    .spec { padding: 22px; }
+    .head { margin-bottom: 20px; }
+    section.block { padding-top: 56px; }
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <div class="id">diego-ali-salinas / data-engineer</div>
+    <nav aria-label="Secciones"><ul>
+      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#especialidad">Especialidad</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a class="cta" href="#contacto">Contacto →</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="lead">
+      <div class="eyebrow rise"><span class="dot"></span>Data / Analytics Engineer · Microsoft Fabric</div>
+      <h1 class="rise d1">Diego Ali<br>Salinas</h1>
+      <p class="intro rise d2">Convierto procesos de datos manuales en pipelines que corren solos. Integro <strong>Dynamics 365 F&amp;O</strong> en un lakehouse sobre <strong>Microsoft Fabric</strong>, dejo los modelos Direct Lake operando en producción y los concilio contra el ERP antes de que alguien firme una cifra.</p>
+      <div class="actions rise d3">
+        <a class="btn primary" id="btn-pdf" href="CV-Diego-Ali-Salinas.pdf" download="CV-Diego-Ali-Salinas.pdf">Descargar CV (PDF)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="M6 11l6 6 6-6"></path><path d="M4 21h16"></path></svg>
+        </a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/diego-salinas-datafreak/" target="_blank" rel="noopener">LinkedIn</a>
+        <span class="loc">Monterrey, N.L. · México</span>
+      </div>
+    </div>
+    <div class="side">
+      <div class="label rise d3">Espera de usuarios · capacidad F64</div>
+      <div class="card rise d4">
+        <div class="row"><span>consultas retrasadas</span><span class="v num">0 <small>min/sem</small></span></div>
+        <div class="hr"></div>
+        <div class="row"><span>corte anterior</span><span class="old num">96 min</span></div>
+        <div class="row"><span>usuarios concurrentes</span><span class="n num">124</span></div>
+        <div class="bars" aria-hidden="true"><div style="height:60%"></div><div style="height:90%"></div><div style="height:100%;background:var(--accent-dim)"></div><div style="height:45%"></div><div style="height:30%"></div><div style="height:18%"></div><div style="height:8%;background:var(--accent)"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kpis rise d4" aria-label="Indicadores">
+    <div class="kpi"><div class="big num">96<span> → 0 min</span></div><p>de espera semanal eliminados para 124 usuarios concurrentes</p></div>
+    <div class="kpi"><div class="big"><span>mensual → </span>diario</div><p>valor de inventario: de un cálculo manual en una laptop a un pipeline automático</p></div>
+    <div class="kpi"><div class="big num">+10<span> procesos</span></div><p>cargas manuales de Excel y dataflows sustituidas por ETL incremental</p></div>
+    <div class="kpi"><div class="big num">7<span> días</span></div><p>de arranque a plataforma en producción: ETL diario, modelo y reporte</p></div>
+  </section>
+  <div class="band rise d5">
+    <span class="label">Horas-hombre liberadas</span>
+    <div class="line"><i></i></div>
+    <span class="val num">≈196 h/mes <span>· 45 h/sem</span></span>
+    <span class="base">equivalente al 80 % de una jornada completa (L–V 8:00–18:30 · S 9:00–13:00)</span>
+  </div>
+
+  <section class="block" id="pipeline">
+    <div class="head"><h2>Del proceso manual al pipeline</h2><span class="sub">arquitectura que diseño, construyo y opero</span></div>
+    <div class="frame">
+      <svg viewBox="0 0 1200 230" role="img" aria-label="Flujo de datos: Dynamics 365 F&amp;O, Link to Fabric, Bronze, Silver, Gold">
+        <path id="flow" d="M 70 120 C 200 120, 200 60, 330 60 S 460 170, 590 170 S 720 60, 850 60 S 980 150, 1130 120" fill="none" stroke="var(--chip)" stroke-width="2" stroke-dasharray="4 8"></path>
+        <g class="node"><circle cx="70" cy="120" r="26" fill="var(--bg)" stroke="var(--node)" stroke-width="2"></circle><text x="70" y="125" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="var(--text2)">ERP</text><text x="70" y="176" text-anchor="middle" font-size="13" fill="var(--muted)">Dynamics 365 F&amp;O</text></g>
+        <g class="node" style="animation-delay:.4s"><circle cx="330" cy="60" r="26" fill="var(--bg)" stroke="var(--node)" stroke-width="2"></circle><text x="330" y="65" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--text2)">LINK</text><text x="330" y="24" text-anchor="middle" font-size="13" fill="var(--muted)">Link to Fabric · sin pasos manuales</text></g>
+        <g class="node" style="animation-delay:.8s"><circle cx="590" cy="170" r="30" fill="var(--bronze-fill)" stroke="var(--bronze-stroke)" stroke-width="2"></circle><text x="590" y="175" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--bronze-text)">BRONZE</text><text x="590" y="222" text-anchor="middle" font-size="13" fill="var(--muted)">134 tablas · shortcuts</text></g>
+        <g class="node" style="animation-delay:1.2s"><circle cx="850" cy="60" r="30" fill="var(--silver-fill)" stroke="var(--silver-stroke)" stroke-width="2"></circle><text x="850" y="65" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--silver-text)">SILVER</text><text x="850" y="24" text-anchor="middle" font-size="13" fill="var(--muted)">incremental · MERGE · watermarks</text></g>
+        <g class="node" style="animation-delay:1.6s"><circle cx="1130" cy="120" r="30" fill="var(--gold-fill)" stroke="var(--accent)" stroke-width="2.5"></circle><text x="1130" y="125" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--gold-text)">GOLD</text><text x="1130" y="176" text-anchor="middle" font-size="13" fill="var(--muted)">Direct Lake · calendarizado</text></g>
+        <circle r="5" fill="var(--accent)"><animateMotion dur="7s" repeatCount="indefinite" begin="0s"><mpath href="#flow"></mpath></animateMotion></circle>
+        <circle r="4" fill="var(--accent)" opacity=".7"><animateMotion dur="7s" repeatCount="indefinite" begin="1.4s"><mpath href="#flow"></mpath></animateMotion></circle>
+        <circle r="3" fill="var(--accent)" opacity=".5"><animateMotion dur="7s" repeatCount="indefinite" begin="2.8s"><mpath href="#flow"></mpath></animateMotion></circle>
+        <circle r="5" fill="var(--strong)" opacity=".6"><animateMotion dur="7s" repeatCount="indefinite" begin="4.2s"><mpath href="#flow"></mpath></animateMotion></circle>
+        <circle r="3" fill="var(--accent)" opacity=".5"><animateMotion dur="7s" repeatCount="indefinite" begin="5.6s"><mpath href="#flow"></mpath></animateMotion></circle>
+      </svg>
+    </div>
+  </section>
+
+  <section class="block" id="especialidad">
+    <div class="head"><h2>Área de especialidad</h2><span class="sub">cuatro cosas que hago mejor que la mayoría</span></div>
+    <div class="grid2">
+      <article class="spec"><div class="eyebrow">Automatización</div><h3>De Excel manual a pipeline calendarizado</h3><p>Cargas incrementales e idempotentes con tablas de control: el proceso corre solo, avisa cuando falla y nunca repite trabajo ya hecho.</p></article>
+      <article class="spec"><div class="eyebrow">Rendimiento</div><h3>Dónde se va el tiempo de cada corrida</h3><p>Un proceso reescribía 4.9 M de filas para actualizar 3,805. Lo rediseñé como carga incremental, validado con diferencia 0.00 contra producción en 4 periodos y 8 métricas.</p></article>
+      <article class="spec"><div class="eyebrow">Conciliación</div><h3>Cifras que el negocio puede firmar</h3><p>Metodología propia de validación ERP ↔ BI: 7 informes con amarres del 99.97 % al 100 %; 22,782 líneas huérfanas saneadas en una corrida de 4.5 minutos.</p></article>
+      <article class="spec"><div class="eyebrow">IA aplicada</div><h3>Agentes que trabajan conmigo</h3><p>10 agentes especializados que revisan ETL, auditan modelos semánticos y generan la documentación técnica: horas de revisión que ya no se hacen a mano.</p></article>
+    </div>
+  </section>
+
+  <section class="block" id="experiencia">
+    <div class="head"><h2>Experiencia</h2><span class="sub">más de 10 años en datos y analítica</span></div>
+
+    <article class="xp">
+      <div class="who">
+        <h3>RYASA</h3>
+        <div class="role">Especialista BI / Ingeniero de Datos</div>
+        <div class="when">08/2023 — actual</div>
+        <div class="ctx">Rodamientos y Accesorios, S.A. de C.V. Grupo industrial de cinco empresas. Administrador de la plataforma Microsoft Fabric (capacidad F64) y del Link to Fabric hacia Dynamics 365 F&amp;O.</div>
+      </div>
+      <div class="what"><ul>
+        <li>Diseñé y opero la arquitectura medallón que integra F&amp;O vía Link to Fabric: notebooks PySpark incrementales (watermarks, MERGE, SCD1, idempotencia) y pipelines calendarizados que sustituyeron más de diez cargas manuales de Excel y dataflows.</li>
+        <li>Capacidad F64: de 96 minutos de consultas retrasadas por semana a cero, con el modelo más usado (124 usuarios concurrentes) bajando de 53 % a 42.9 % del consumo.</li>
+        <li>Rediseñé el proceso de ventas que reescribía 4.9 M de filas para actualizar 3,805 (amplificación de ~1,175×) como carga incremental, validada con diferencia 0.00 contra producción.</li>
+        <li>Llevé el cálculo de valor de inventario y clasificación ABC de un proceso manual mensual en una laptop (45 archivos Excel) a un pipeline diario y de cierre; 56.9 M de filas de histórico rescatadas y 40.7 M conciliadas al centavo.</li>
+        <li>Desarrollé cerca de 10 modelos semánticos Direct Lake desplegados por API REST y TMDL, con RLS estático y dinámico aplicado por TOM sobre un alcance de ~30 modelos.</li>
+        <li>Construí el sistema de identidad visual de reportes con un validador automático de 38 reglas —de 62 errores a 5 en el piloto— y la generación de reportes por código (PBIR en Python).</li>
+        <li>Entregué 39 proyectos de datos a 9 áreas de negocio bajo un flujo formal de requerimiento firmado, manual de usuario y carta de liberación, con tablero de estado y memoria técnica por proyecto.</li>
+      </ul>
+      <div class="chips"><span class="chip">PySpark</span><span class="chip">Delta Lake</span><span class="chip">Direct Lake</span><span class="chip">DAX · TMDL · XMLA</span><span class="chip">Python · SQL</span><span class="chip">Git/GitHub</span><span class="chip">Claude Code · agentes</span></div>
+      </div>
+    </article>
+
+    <article class="xp">
+      <div class="who"><h3>Antes de RYASA</h3><div class="role">Trayectoria previa</div><div class="when">2013 — 2023</div></div>
+      <div class="what"><div class="pending">[ PENDIENTE — historial laboral anterior a 08/2023: empresa, puesto, fechas y 2–3 logros por empleo. Se integra en cuanto Diego lo comparta. ]</div></div>
+    </article>
+  </section>
+
+  <section class="block" id="habilidades">
+    <div class="head"><h2>Habilidades</h2><span class="sub">lo que uso todos los días</span></div>
+    <div class="skills">
+      <div class="skill"><h3>Plataforma de datos</h3><p>Microsoft Fabric (Lakehouse, OneLake, Shortcuts, Notebooks, Data Factory Pipelines, Warehouse, SQL Endpoint, Capacity Metrics), administración de capacidad F64, gobierno de workspaces, Entra ID y service principals.</p></div>
+      <div class="skill"><h3>Ingeniería de datos</h3><p>PySpark, Spark SQL, Delta Lake (MERGE, OPTIMIZE, VACUUM, Z-ORDER, time travel), arquitectura medallón, cargas incrementales, watermarks, SCD1, idempotencia, backfill y reprocesos, observabilidad y calidad de datos.</p></div>
+      <div class="skill"><h3>BI y modelado semántico</h3><p>Power BI, Direct Lake / Import, modelado dimensional, DAX, TMDL, XMLA, PBIP/PBIR, RLS y OLS (roles dinámicos vía TOM), Power Query / M, optimización de medidas y relaciones.</p></div>
+      <div class="skill"><h3>IA aplicada y automatización</h3><p>Agentes especializados para revisión de ETL, auditoría de modelos semánticos, documentación técnica y validación de estándares. Desarrollo asistido por agentes de codificación (Claude Code). Modelos semánticos preparados para Fabric data agents / Copilot. Pronóstico de series de tiempo zero-shot con modelos fundacionales (TimesFM).</p></div>
+      <div class="skill"><h3>Lenguajes, DevOps y calidad</h3><p>Python (pandas, semantic-link-labs, sempy/TOM), SQL, PowerShell, API REST de Fabric y Power BI, Git/GitHub (ramas, pull requests), pytest, documentación técnica versionada.</p></div>
+      <div class="skill"><h3>Fuentes y ERP</h3><p>Dynamics 365 Finance &amp; Operations (Link to Fabric), Dataverse, SQL Server, SharePoint, Excel avanzado.</p></div>
+      <div class="skill"><h3>Dominio de negocio</h3><p>Ventas, inventarios, compras, facturación, cobranza, nivel de servicio, planeación de la demanda y reporteo directivo. Levantamiento de requerimientos y trato directo con áreas usuarias y dirección.</p></div>
+      <div class="skill"><h3>Idiomas</h3><p>Español nativo · Inglés intermedio (lectura técnica y documentación sin apoyo).</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="formacion">
+    <div class="head"><h2>Formación</h2></div>
+    <div class="edu">
+      <div class="card"><div class="t">Ingeniería Industrial y de Sistemas</div><div class="s">Universidad Tecmilenio</div></div>
+      <div class="card"><div class="t">Objetivo profesional</div><div class="s">Un equipo que trate la plataforma de datos como producto —versionada, probada y trazable— donde aportar ingeniería a escala, conciliación verificable con la fuente y automatización con agentes de IA.</div></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="big">¿Hablamos? <a href="mailto:emulvit@gmail.com">emulvit@gmail.com</a></div>
+    <div class="links"><a href="https://www.linkedin.com/in/diego-salinas-datafreak/" target="_blank" rel="noopener">linkedin.com/in/diego-salinas-datafreak</a><span>Monterrey, N.L. · México</span></div>
+  </section>
+  <footer><span>Diego Ali Salinas · 2026</span><span>HTML, CSS y SVG a mano. Sin frameworks.</span></footer>
+</main>
+</body>
+</html>
