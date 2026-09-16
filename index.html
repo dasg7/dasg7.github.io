@@ -132,6 +132,8 @@
   .contact .big { font-family: var(--serif); font-size: clamp(24px, 3vw, 32px); color: var(--strong); }
   .contact .big a { word-break: break-all; }
   .contact .links { display: flex; gap: 20px; font-family: var(--mono); font-size: 13px; color: var(--dim); flex-wrap: wrap; }
+  .contact .li-badge { flex-basis: 100%; margin-top: 20px; min-height: 44px; }
+  .contact .li-badge .LI-simple-link { font-family: var(--mono); font-size: 13px; color: var(--dim); }
   footer { padding-block: 24px 48px; font-family: var(--mono); font-size: 12px; color: var(--dim); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
   /* motion */
@@ -312,8 +314,11 @@
   <section class="contact" id="contacto">
     <div class="big">¿Hablamos? <a href="mailto:emulvit@gmail.com">emulvit@gmail.com</a></div>
     <div class="links"><a href="https://www.linkedin.com/in/diego-salinas-datafreak/" target="_blank" rel="noopener">linkedin.com/in/diego-salinas-datafreak</a><span>Monterrey, N.L. · México</span></div>
+    <div class="li-badge"><div class="badge-base LI-profile-badge" data-locale="es_ES" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="diego-salinas-datafreak" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://mx.linkedin.com/in/diego-salinas-datafreak?trk=profile-badge">Diego Salinas</a></div></div>
   </section>
   <footer><span>Diego Ali Salinas · 2026</span><span>HTML, CSS y SVG a mano. Sin frameworks.</span></footer>
 </main>
+
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 </body>
 </html>
